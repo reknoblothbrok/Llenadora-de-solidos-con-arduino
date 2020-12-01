@@ -1,3 +1,9 @@
+
+/////////////// I2C //////////////////////////////////
+#include <Wire.h>               // Librería para la comunicación serial Arduino-Arduino
+byte pin[] = {2, 3, 4, 5, 6};
+byte estado = 0;
+
 ///////////// Keypad ////////////////////
 #include <Keypad.h>
 
@@ -57,6 +63,7 @@ void setup()
 }
 void loop()
 {
+  Wire.beginTransmission(1);  // Comenzamos la transmisión al arduino esclavo
   bp = digitalRead(B_P);
 
   if(bp != HIGH)
@@ -233,5 +240,6 @@ void loop()
  {
   digitalWrite(LED1, LOW);
  }
-  
+  // Paramos la transmisión
+  Wire.endTransmission();
 }
